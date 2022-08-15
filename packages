@@ -28,3 +28,7 @@ cdpp detect-command cdpp-version.sh
 localhist canon-source https://github.com/sanekits/localhist
 localhist desc Toolkit for improving bash history
 localhist detect-command localhist-version.sh
+
+taskrc-kit canon-source https://github.com/sanekits/taskrc-kit
+taskrc-kit desc Per-project shell init toolkit
+taskrc-kit detect-command taskrc-kit-version.sh
