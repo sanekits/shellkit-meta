@@ -9,7 +9,7 @@
 #   desc -> Short description of kit
 #   detect-command -> Commandline used to detect version currently installed
 
-shellkit-pm canon-source "https://github.com/sanekits/shellkit-pm"
+shellkit-pm canon-source https://github.com/sanekits/shellkit-pm
 shellkit-pm desc Package manager for shellkit-based tools
 shellkit-pm detect-command shellkit-pm-version.sh
 
@@ -20,3 +20,7 @@ gitsmart detect-command gitsmart-version.sh
 ps1-foo canon-source https://github.com/sanekits/ps1-foo
 ps1-foo desc Make bash prompt more helpful+attractive
 ps1-foo detect-command ps1-foo-version.sh
+
+cdpp canon-source https://github.com/sanekits/cdpp
+cdpp desc cd++ smarter change-directory
+cdpp detect-command cdpp-version.sh
