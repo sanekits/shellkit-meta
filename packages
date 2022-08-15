@@ -24,3 +24,7 @@ ps1-foo detect-command ps1-foo-version.sh
 cdpp canon-source https://github.com/sanekits/cdpp
 cdpp desc cd++ smarter change-directory
 cdpp detect-command cdpp-version.sh
+
+localhist canon-source https://github.com/sanekits/localhist
+localhist desc Toolkit for improving bash history
+localhist detect-command localhist-version.sh
