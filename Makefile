@@ -13,9 +13,9 @@ lint:
 	${python} -m pylint bin/*.py
 
 install: ${HOME}/.config/shellkit-meta/packages
-	@echo Install: OK
 
-${HOME}/.config/shellkit-meta/packages: packages check-packages
+
+${HOME}/.config/shellkit-meta/packages: packages bin/check_packages.py Makefile
 	test -f ${HOME}/.config/shellkit-meta/packages && cp ${HOME}/.config/shellkit-meta/packages ${HOME}/.config/shellkit-meta/packages-bak.$$$$ || :
 	mkdir -p ${HOME}/.config/shellkit-meta
 	cp packages ${HOME}/.config/shellkit-meta/packages

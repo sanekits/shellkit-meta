@@ -12,12 +12,19 @@ class RecordType(Enum):
     DESC = 2
     DETECT_COMMAND = 3
 
+
 class DuplicatePackage(RuntimeError):
     ...
+
+
 class BadRecordType(RuntimeError):
     ...
+
+
 class DispatchTokenError(RuntimeError):
     ...
+
+
 class BadPackageError(RuntimeError):
     ...
 
@@ -41,12 +48,15 @@ class Package:
         self.detect_command: str = None
         self.desc: str = None
 
-def validate_package(package:Package) -> None:
-    """ Apply business rules to Package """
+
+def validate_package(package: Package) -> None:
+    """Apply business rules to Package"""
     if not package.name:
         raise BadPackageError("No name in package")
-    if not re.search( r"^[a-zA-Z][a-zA-Z0-9_-]+$", package.name):
-        raise BadPackageError(f"Package name {package.name} doesn't match char pattern requirements")
+    if not re.search(r"^[a-zA-Z][a-zA-Z0-9_-]+$", package.name):
+        raise BadPackageError(
+            f"Package name {package.name} doesn't match char pattern requirements"
+        )
     if not package.canon_source:
         raise BadPackageError(f"Package {package.name} has no canon-source spec")
     if not package.detect_command:
@@ -57,19 +67,22 @@ class Packages:
     """ADG of Package"""
 
     def __init__(self):
-        self.packages:Dict[str,Package] = {}
+        self.packages: Dict[str, Package] = {}
 
     def add(self, package: Package):
         if package.name in self.packages:
-            raise DuplicatePackage(f"package {package.name} is already in Packages collection")
-        self.packages[package.name]=package
+            raise DuplicatePackage(
+                f"package {package.name} is already in Packages collection"
+            )
+        self.packages[package.name] = package
         return self.packages[package.name]
 
-    def get(self,package_name:str) -> Package:
+    def get(self, package_name: str) -> Package:
         return self.packages[package_name]
 
     def items(self):
         return self.packages.items()
+
 
 class Tokens:
     """Tokenized line from packages"""
@@ -83,7 +96,7 @@ class Tokens:
 def main(argv: List[str]) -> int:
     """main"""
     filename = argv[1]
-    packages=Packages()
+    packages = Packages()
 
     def parse_line(line: str) -> Tokens:
         tokens: Tokens = Tokens()
@@ -98,17 +111,16 @@ def main(argv: List[str]) -> int:
             packages.add(package)
         except DuplicatePackage:
             package = packages.get(tokens.name)
-        if tokens.record_type==RecordType.CANON_SOURCE:
-            package.canon_source=tokens.info
-        elif tokens.record_type==RecordType.DESC:
-            package.desc=tokens.info
-        elif tokens.record_type==RecordType.DETECT_COMMAND:
-            package.detect_command=tokens.info
+        if tokens.record_type == RecordType.CANON_SOURCE:
+            package.canon_source = tokens.info
+        elif tokens.record_type == RecordType.DESC:
+            package.desc = tokens.info
+        elif tokens.record_type == RecordType.DETECT_COMMAND:
+            package.detect_command = tokens.info
         else:
-            raise DispatchTokenError(f"Unable to parse token")
+            raise DispatchTokenError("Unable to parse token")
 
-
-    with open(filename, encoding='utf-8') as infile:
+    with open(filename, encoding="utf-8") as infile:
         for line in infile:
             line = line.strip()
             if not line:
