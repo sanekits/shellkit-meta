@@ -4,7 +4,7 @@
 python=$(shell python3.9 -c 'import sys; print(sys.executable)')
 
 check-packages: packages
-	bin/check-packages.sh
+	${python} bin/check_packages.py $${PWD}/packages
 
 black:
 	${python} -m black bin/*py

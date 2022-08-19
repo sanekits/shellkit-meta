@@ -100,8 +100,9 @@ def main(argv: List[str]) -> int:
                 continue
             dispatch_token(parse_line(line))
 
+    print(f"{filename} check: OK")
     return 0
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    sys.exit(main(sys.argv))
