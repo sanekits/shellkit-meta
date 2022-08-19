@@ -2,6 +2,7 @@
 """ Given a packages file, verify structure and content """
 import sys
 import os
+import re
 from typing import List
 from enum import Enum
 
@@ -16,6 +17,8 @@ class DuplicatePackage(RuntimeError):
 class BadRecordType(RuntimeError):
     ...
 class DispatchTokenError(RuntimeError):
+    ...
+class BadPackageError(RuntimeError):
     ...
 
 
@@ -38,6 +41,17 @@ class Package:
         self.detect_command: str = None
         self.desc: str = None
 
+def validate_package(package:Package) -> None:
+    """ Apply business rules to Package """
+    if not package.name:
+        raise BadPackageError("No name in package")
+    if not re.search( r"^[a-zA-Z][a-zA-Z0-9_-]+$", package.name):
+        raise BadPackageError(f"Package name {package.name} doesn't match char pattern requirements")
+    if not package.canon_source:
+        raise BadPackageError(f"Package {package.name} has no canon-source spec")
+    if not package.detect_command:
+        raise BadPackageError(f"Package {package.name} has no detect-command spec")
+
 
 class Packages:
     """ADG of Package"""
@@ -53,6 +67,9 @@ class Packages:
 
     def get(self,package_name:str) -> Package:
         return self.packages[package_name]
+
+    def items(self):
+        return self.packages.items()
 
 class Tokens:
     """Tokenized line from packages"""
@@ -99,6 +116,8 @@ def main(argv: List[str]) -> int:
             if line.startswith("#"):
                 continue
             dispatch_token(parse_line(line))
+    for package_name, package in packages.items():
+        validate_package(package)
 
     print(f"{filename} check: OK")
     return 0

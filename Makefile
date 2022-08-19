@@ -1,6 +1,6 @@
 # Makefile for shellkit-meta
 
-.PHONY: check-packages
+.PHONY: check-packages lint black install
 python=$(shell python3.9 -c 'import sys; print(sys.executable)')
 
 check-packages: packages
@@ -12,3 +12,10 @@ black:
 lint:
 	${python} -m pylint bin/*.py
 
+install: ${HOME}/.config/shellkit-meta/packages
+	@echo Install: OK
+
+${HOME}/.config/shellkit-meta/packages: packages check-packages
+	test -f ${HOME}/.config/shellkit-meta/packages && cp ${HOME}/.config/shellkit-meta/packages ${HOME}/.config/shellkit-meta/packages-bak.$$$$ || :
+	mkdir -p ${HOME}/.config/shellkit-meta
+	cp packages ${HOME}/.config/shellkit-meta/packages
