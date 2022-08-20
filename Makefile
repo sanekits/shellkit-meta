@@ -1,6 +1,6 @@
 # Makefile for shellkit-meta
 
-.PHONY: check-packages lint black install
+.PHONY: check-packages lint black install publish
 python=$(shell python3.9 -c 'import sys; print(sys.executable)')
 
 check-packages: packages
@@ -14,6 +14,10 @@ lint:
 
 install: ${HOME}/.config/shellkit-meta/packages
 
+publish:
+	@echo The 'packages' file is the distributed artifact.  But
+	@echo the distribution happens in shellkit-pm, not here.  That
+	@echo project depends on shellkit-meta at publish time.
 
 ${HOME}/.config/shellkit-meta/packages: packages bin/check_packages.py Makefile
 	test -f ${HOME}/.config/shellkit-meta/packages && cp ${HOME}/.config/shellkit-meta/packages ${HOME}/.config/shellkit-meta/packages-bak.$$$$ || :
