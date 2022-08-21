@@ -14,6 +14,9 @@ lint:
 
 install: ${HOME}/.config/shellkit-meta/packages
 
+# pre-publish is invoked by an outer loop for release:
+pre-publish: check-packages
+
 publish:
 	@echo The 'packages' file is the distributed artifact.  But
 	@echo the distribution happens in shellkit-pm, not here.  That
