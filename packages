@@ -40,3 +40,8 @@ shellkit-pm detect-command shellkit-pm-version.sh
 taskrc-kit canon-source https://github.com/sanekits/taskrc-kit
 taskrc-kit desc Per-project shell init toolkit
 taskrc-kit detect-command taskrc-kit-version.sh
+
+looper canon-source https://github.com/sanekits/looper
+taskrc-kit desc Run a shell command in a repeating loop
+taskrc-kit detect-command looper-version.sh
+
