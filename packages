@@ -29,6 +29,10 @@ localhist canon-source https://github.com/sanekits/localhist
 localhist desc Toolkit for improving bash history
 localhist detect-command localhist-version.sh
 
+looper canon-source https://github.com/sanekits/looper
+looper desc Run a shell command in a repeating loop
+looper detect-command looper-version.sh
+
 ps1-foo canon-source https://github.com/sanekits/ps1-foo
 ps1-foo desc Make bash prompt more helpful+attractive
 ps1-foo detect-command ps1-foo-version.sh
@@ -41,7 +45,4 @@ taskrc-kit canon-source https://github.com/sanekits/taskrc-kit
 taskrc-kit desc Per-project shell init toolkit
 taskrc-kit detect-command taskrc-kit-version.sh
 
-looper canon-source https://github.com/sanekits/looper
-taskrc-kit desc Run a shell command in a repeating loop
-taskrc-kit detect-command looper-version.sh
 
