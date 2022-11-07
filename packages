@@ -9,6 +9,10 @@
 #   desc -> Short description of kit
 #   detect-command -> Commandline used to detect version currently installed
 
+bashics canon-source https://github.com/sanekits/bashics
+bashics desc Basic sane settings for bash
+bashics detect-command bashics-version.sh
+
 cdpp canon-source https://github.com/sanekits/cdpp
 cdpp desc cd++ smarter change-directory
 cdpp detect-command cdpp-version.sh
