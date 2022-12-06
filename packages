@@ -1,5 +1,5 @@
 # packages
-# schema 1.0.0  -- schema of the packages metadata, this is not the shellkit-pm version
+# schema 1.0.1  -- schema of the packages metadata, this is not the shellkit-pm version
 # [kitname] [record-type] [data...]
 # The packages metadata is a set of one-line records, each line provides a distinct
 # information field for a particular kit
@@ -8,6 +8,10 @@
 #   canon-source  -> Canonical source repo for kit in github (with no sub-uri)
 #   desc -> Short description of kit
 #   detect-command -> Commandline used to detect version currently installed
+#   virtual -> list of kits to be installed
+
+vbase virtual bashics ps1-foo cdpp localhist gitsmart looper
+vbase desc Basic most-used kits
 
 bashics canon-source https://github.com/sanekits/bashics
 bashics desc Basic sane settings for bash
@@ -48,5 +52,4 @@ shellkit-pm detect-command shellkit-pm-version.sh
 taskrc-kit canon-source https://github.com/sanekits/taskrc-kit
 taskrc-kit desc Per-project shell init toolkit
 taskrc-kit detect-command taskrc-kit-version.sh
-
 
