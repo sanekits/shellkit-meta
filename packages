@@ -10,7 +10,7 @@
 #   detect-command -> Commandline used to detect version currently installed
 #   virtual -> list of kits to be installed
 
-vbase virtual bashics ps1foo cdpp localhist gitsmart looper
+vbase virtual bashics ps1-foo cdpp localhist gitsmart looper
 vbase desc Basic most-used kits
 
 bashics canon-source https://github.com/sanekits/bashics
