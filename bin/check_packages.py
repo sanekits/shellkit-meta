@@ -1,9 +1,10 @@
 # check-packages.py
 """ Given a packages file, verify structure and content """
+from importlib.metadata import PackageNotFoundError
 import sys
 import os
 import re
-from typing import List
+from typing import List,Dict
 from enum import Enum
 
 
@@ -11,6 +12,7 @@ class RecordType(Enum):
     CANON_SOURCE = 1
     DESC = 2
     DETECT_COMMAND = 3
+    VIRTUAL = 4
 
 
 class DuplicatePackage(RuntimeError):
@@ -36,6 +38,8 @@ def xlat_record_type(text: str) -> RecordType:
         return RecordType.DESC
     if text == "detect-command":
         return RecordType.DETECT_COMMAND
+    if text == "virtual":
+        return RecordType.VIRTUAL
     raise BadRecordType(f"{text} is not a valid RecordType")
 
 
@@ -47,6 +51,7 @@ class Package:
         self.canon_source: str = None
         self.detect_command: str = None
         self.desc: str = None
+        self.vexpand: List[str] = None
 
 
 def validate_package(package: Package) -> None:
@@ -57,10 +62,12 @@ def validate_package(package: Package) -> None:
         raise BadPackageError(
             f"Package name {package.name} doesn't match char pattern requirements"
         )
-    if not package.canon_source:
-        raise BadPackageError(f"Package {package.name} has no canon-source spec")
-    if not package.detect_command:
-        raise BadPackageError(f"Package {package.name} has no detect-command spec")
+    if not package.vexpand:  # the virtual package type expands into .vexpand, that's how we know it.
+                             # But it doesn't need a canon-src or detect-command
+        if not package.canon_source:
+            raise BadPackageError(f"Package {package.name} has no canon-source spec")
+        if not package.detect_command:
+            raise BadPackageError(f"Package {package.name} has no detect-command spec")
 
 
 class Packages:
@@ -117,6 +124,8 @@ def main(argv: List[str]) -> int:
             package.desc = tokens.info
         elif tokens.record_type == RecordType.DETECT_COMMAND:
             package.detect_command = tokens.info
+        elif tokens.record_type == RecordType.VIRTUAL:
+            package.vexpand = tokens.info.split()
         else:
             raise DispatchTokenError("Unable to parse token")
 
@@ -129,7 +138,13 @@ def main(argv: List[str]) -> int:
                 continue
             dispatch_token(parse_line(line))
     for package_name, package in packages.items():
-        validate_package(package)
+        if package.vexpand:
+            # Validate the existence of the expansion packages:
+            for exp in package.vexpand:
+                if not exp in packages.packages:
+                    raise BadPackageError(f"Virtual package \"{package_name}\" expansion includes unknown package \"{exp}\"")
+        else:
+            validate_package(package)
 
     print(f"{filename} check: OK")
     return 0

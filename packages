@@ -8,6 +8,11 @@
 #   canon-source  -> Canonical source repo for kit in github (with no sub-uri)
 #   desc -> Short description of kit
 #   detect-command -> Commandline used to detect version currently installed
+#   expand-as  ->  For
+
+
+vbase virtual bashics cdpp localhist ps1-foo
+vbase desc Basic most-used kits
 
 bashics canon-source https://github.com/sanekits/bashics
 bashics desc Basic sane settings for bash
@@ -48,5 +53,4 @@ shellkit-pm detect-command shellkit-pm-version.sh
 taskrc-kit canon-source https://github.com/sanekits/taskrc-kit
 taskrc-kit desc Per-project shell init toolkit
 taskrc-kit detect-command taskrc-kit-version.sh
-
 
