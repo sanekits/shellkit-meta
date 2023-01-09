@@ -53,3 +53,6 @@ taskrc-kit canon-source https://github.com/sanekits/taskrc-kit
 taskrc-kit desc Per-project shell init toolkit
 taskrc-kit detect-command taskrc-kit-version.sh
 
+vscode-tools canon-source https://github.com/sanekits/vscode-tools
+vscode-tools desc Helpers for vscode
+vscode-tools detect-command vscode-tools-version.sh
