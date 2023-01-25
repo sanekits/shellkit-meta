@@ -41,6 +41,10 @@ looper canon-source https://github.com/sanekits/looper
 looper desc Run a shell command in a repeating loop
 looper detect-command looper-version.sh
 
+makeup canon-source https://github.com/sanekits/makeup
+makeup desc Tools for GUN make and its family
+makeup detect-command makeup-version.sh
+
 ps1-foo canon-source https://github.com/sanekits/ps1-foo
 ps1-foo desc Make bash prompt more helpful+attractive
 ps1-foo detect-command ps1-foo-version.sh
