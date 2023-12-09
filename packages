@@ -57,10 +57,6 @@ taskrc-kit canon-source https://github.com/sanekits/taskrc-kit
 taskrc-kit desc Per-project shell init toolkit
 taskrc-kit detect-command taskrc-kit-version.sh
 
-vimsane canon-source https://github.com/sanekits/vimsane
-vimsane desc Make bash prompt more helpful+attractive
-vimsane detect-command vimsane-version.sh
-
 vscode-tools canon-source https://github.com/sanekits/vscode-tools
 vscode-tools desc Helpers for vscode
 vscode-tools detect-command vscode-tools-version.sh
