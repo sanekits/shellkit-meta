@@ -30,7 +30,7 @@ main() {
 }
 
 [[ -z ${sourceMe} ]] && {
-    for cand in python3.{10..7}; do
+    for cand in python3.{12..7}; do
         $cand -m pip --version &>/dev/null && {
             ${cand} -c 'import sys; print(sys.executable)'
             exit
