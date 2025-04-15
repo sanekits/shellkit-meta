@@ -25,6 +25,10 @@ docktools canon-source https://github.com/sanekits/docktools
 docktools desc Docker helpers
 docktools detect-command docktools-version.sh
 
+fzfoo canon-source https://github.com/sanekits/fzfoo
+fzfoo desc Fzf install wrapper
+fzfoo detect-command fzfoo-version.sh
+
 gh-help canon-source https://github.com/Stabledog/gh-help
 gh-help desc Helpers for the github.com gh cli
 gh-help detect-command gh-help-version.sh
@@ -60,3 +64,4 @@ taskrc-kit detect-command taskrc-kit-version.sh
 vscode-tools canon-source https://github.com/sanekits/vscode-tools
 vscode-tools desc Helpers for vscode
 vscode-tools detect-command vscode-tools-version.sh
+
