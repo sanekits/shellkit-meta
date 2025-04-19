@@ -54,6 +54,10 @@ shellkit-pm canon-source https://github.com/sanekits/shellkit-pm
 shellkit-pm desc Package manager for shellkit-based tools
 shellkit-pm detect-command shellkit-pm-version.sh
 
+tankshell canon-source https://github.com/sanekits/tankshell
+tankshell desc Per-project shell init toolkit
+tankshell detect-command tankshell-version.sh
+
 taskrc-kit canon-source https://github.com/sanekits/taskrc-kit
 taskrc-kit desc Per-project shell init toolkit
 taskrc-kit detect-command taskrc-kit-version.sh
