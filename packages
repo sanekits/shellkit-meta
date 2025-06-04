@@ -46,6 +46,10 @@ makeup canon-source https://github.com/sanekits/makeup
 makeup desc Tools for GUN make and its family
 makeup detect-command makeup-version.sh
 
+pyzzle canon-source https://github.com/sanekits/pyzzle
+pyzzle desc Make bash prompt more helpful+attractive
+pyzzle detect-command pyzzle-version.sh
+
 ps1-foo canon-source https://github.com/sanekits/ps1-foo
 ps1-foo desc Make bash prompt more helpful+attractive
 ps1-foo detect-command ps1-foo-version.sh
